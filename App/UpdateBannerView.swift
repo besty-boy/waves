@@ -6,9 +6,6 @@ struct UpdateBannerView: View {
     @EnvironmentObject private var updates: UpdateService
     @Environment(\.openURL) private var openURL
 
-    /// Opens the in-app settings page (injected by the hosting view).
-    var onOpenSettings: () -> Void = {}
-
     /// Coarse animation key so continuous download progress ticks don't re-trigger spring transitions.
     private var animationKey: Int {
         switch updates.banner {
@@ -16,9 +13,8 @@ struct UpdateBannerView: View {
         case .update: 1
         case .upToDate: 2
         case .failed: 3
-        case .tokenHint: 4
-        case .progress: 5
-        case .installing: 6
+        case .progress: 4
+        case .installing: 5
         }
     }
 
@@ -71,7 +67,6 @@ struct UpdateBannerView: View {
         case .update: return "arrow.down.circle.fill"
         case .upToDate: return "checkmark.circle.fill"
         case .failed: return "exclamationmark.triangle.fill"
-        case .tokenHint: return "key.fill"
         case .progress: return "arrow.down.circle"
         case .installing: return "arrow.triangle.2.circlepath"
         }
@@ -93,8 +88,6 @@ struct UpdateBannerView: View {
             return "Wave est à jour"
         case .failed:
             return "Mise à jour impossible"
-        case .tokenHint:
-            return "Activez les mises à jour automatiques"
         case .progress:
             return "Téléchargement de la mise à jour…"
         case .installing:
@@ -114,8 +107,6 @@ struct UpdateBannerView: View {
             return "La dernière version (\(updates.appVersion)) est installée."
         case let .failed(message):
             return message
-        case .tokenHint:
-            return "Ajoutez un token GitHub dans les Réglages pour être prévenu des nouvelles versions."
         case .progress:
             return "Ensuite, Wave se relancera automatiquement."
         case .installing:
@@ -140,10 +131,6 @@ struct UpdateBannerView: View {
             iconButton("xmark") { updates.ignore(release) }
                 .help("Ignorer cette version")
                 .accessibilityLabel("Ignorer cette version")
-
-        case .tokenHint:
-            primaryButton("Ouvrir les Réglages") { onOpenSettings() }
-            secondaryButton("Plus tard") { updates.dismissBanner() }
 
         case let .failed(message):
             if let page = updates.release?.pageURL {

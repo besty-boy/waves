@@ -134,7 +134,7 @@ struct ContentView: View {
                 #endif
             }
             .safeAreaInset(edge: .top, spacing: 0) {
-                UpdateBannerView(onOpenSettings: { route = .settings })
+                UpdateBannerView()
             }
             .task { await updates.onLaunch() }
             .waveOnChange(of: selectedTrash) { id in

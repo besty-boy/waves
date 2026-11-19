@@ -33,7 +33,6 @@ final class UpdateService: ObservableObject {
         case update(WaveRelease)
         case upToDate
         case failed(String)
-        case tokenHint
         case progress(Double)
         case installing
     }
@@ -43,7 +42,6 @@ final class UpdateService: ObservableObject {
 
     @Published private(set) var banner: Banner?
     @Published private(set) var release: WaveRelease?
-    @Published private(set) var tokenConfigured = GitHubToken.isConfigured
     @Published private(set) var isOnline = true
 
     private var dismissedReleaseTag: String?
@@ -94,7 +92,6 @@ final class UpdateService: ObservableObject {
 
     func onLaunch() async {
         #if os(macOS)
-        refreshTokenState()
         guard !Self.isDevBuild else { return }
         if isOnline {
             await check(manual: false)
@@ -121,24 +118,7 @@ final class UpdateService: ObservableObject {
 
     // MARK: - Checking
 
-    func refreshTokenState() {
-        let configured = GitHubToken.isConfigured
-        tokenConfigured = configured
-        if banner == .tokenHint { banner = nil }
-    }
-
-    /// Called after the user updates the optional Keychain entry.
-    func tokenDidChange() {
-        refreshTokenState()
-        #if os(macOS)
-        guard !Self.isDevBuild, isOnline else { return }
-        startPeriodicChecks()
-        Task { await check(manual: false) }
-        #endif
-    }
-
     func check(manual: Bool) async {
-        refreshTokenState()
         guard !isBusy, !isChecking else { return }
         guard isOnline else {
             if manual {
@@ -146,12 +126,10 @@ final class UpdateService: ObservableObject {
             }
             return
         }
-        let token = GitHubToken.current
         isChecking = true
         defer { isChecking = false }
         do {
-            let latest = try await Self.fetchLatestRelease(token: token)
-            guard token == GitHubToken.current else { return }
+            let latest = try await Self.fetchLatestRelease()
             let isNewer = latest.map { Self.isVersion($0.tag, newerThan: appVersion) } ?? false
             let isIgnored = latest.map { UserDefaults.standard.string(forKey: ignoredVersionKey) == $0.tag } ?? false
             if let latest, isNewer, (manual || !isIgnored) {
@@ -226,7 +204,6 @@ final class UpdateService: ObservableObject {
             return
         }
         #if os(macOS)
-        let token = GitHubToken.current
         let target = Bundle.main.bundleURL
         guard target.pathExtension == "app" else {
             banner = .failed("Mise à jour impossible depuis cette copie de l'app.")
@@ -244,7 +221,7 @@ final class UpdateService: ObservableObject {
         do {
             let work = try Self.makeTemporaryDirectory()
             let zip = work.appendingPathComponent(Self.assetName)
-            try await downloadAsset(from: release.assetURL, token: token, to: zip)
+            try await downloadAsset(from: release.assetURL, to: zip)
             let extracted = work.appendingPathComponent("Extracted", isDirectory: true)
             let expectedSize = release.assetSize
             let expectedDigest = release.assetDigest
@@ -308,15 +285,12 @@ final class UpdateService: ObservableObject {
         }
     }
 
-    private static func fetchLatestRelease(token: String?) async throws -> WaveRelease? {
+    private static func fetchLatestRelease() async throws -> WaveRelease? {
         guard let url = URL(string: "https://api.github.com/repos/\(repositorySlug)/releases/latest") else {
             throw UpdateError("URL GitHub invalide.")
         }
         var request = URLRequest(url: url)
         request.timeoutInterval = 12
-        if let token, !token.isEmpty {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
         request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
         request.setValue("2022-11-28", forHTTPHeaderField: "X-GitHub-Api-Version")
         request.setValue("Wave", forHTTPHeaderField: "User-Agent")
@@ -328,10 +302,8 @@ final class UpdateService: ObservableObject {
         switch http.statusCode {
         case 200:
             break
-        case 401:
-            throw UpdateError("Token GitHub refusé. Supprimez-le ou vérifiez ses droits dans Réglages.")
         case 403:
-            throw UpdateError("Limite de requêtes GitHub atteinte. Réessayez plus tard ou ajoutez un token optionnel dans Réglages.")
+            throw UpdateError("Limite de requêtes GitHub atteinte. Réessayez un peu plus tard.")
         case 404:
             return nil
         default:
@@ -381,14 +353,11 @@ final class UpdateService: ObservableObject {
     // MARK: - Download
 
     #if os(macOS)
-    private func downloadAsset(from url: URL, token: String?, to destination: URL) async throws {
+    private func downloadAsset(from url: URL, to destination: URL) async throws {
         guard url.scheme == "https", url.host == "api.github.com" else {
             throw UpdateError("Adresse de téléchargement GitHub invalide.")
         }
         var request = URLRequest(url: url)
-        if let token, !token.isEmpty {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
         request.setValue("application/octet-stream", forHTTPHeaderField: "Accept")
         request.setValue("Wave \(appVersion)", forHTTPHeaderField: "User-Agent")
         let downloader = AssetDownloader()
@@ -496,9 +465,8 @@ final class UpdateService: ObservableObject {
     #endif
 }
 
-/// Downloads a release asset, dropping the optional Authorization header when
-/// GitHub redirects to the signed storage URL.
-private final class AssetDownloader: NSObject, URLSessionDownloadDelegate, URLSessionTaskDelegate {
+/// Downloads a public release asset with progress reporting.
+private final class AssetDownloader: NSObject, URLSessionDownloadDelegate {
     private var progressHandler: ((Double) -> Void)?
     private var completionHandler: ((Result<URL, Error>) -> Void)?
     private var destination: URL?
@@ -535,11 +503,7 @@ private final class AssetDownloader: NSObject, URLSessionDownloadDelegate, URLSe
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
         if let http = downloadTask.response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
-            if http.statusCode == 401 || http.statusCode == 403 {
-                finish(.failure(UpdateError("Téléchargement refusé (HTTP \(http.statusCode)).")))
-            } else {
-                finish(.failure(UpdateError("Impossible de télécharger la mise à jour (HTTP \(http.statusCode)).")))
-            }
+            finish(.failure(UpdateError("Impossible de télécharger la mise à jour (HTTP \(http.statusCode)).")))
             return
         }
         guard let destination else {
@@ -559,18 +523,6 @@ private final class AssetDownloader: NSObject, URLSessionDownloadDelegate, URLSe
                     task: URLSessionTask,
                     didCompleteWithError error: Error?) {
         if let error { finish(.failure(error)) }
-    }
-
-    func urlSession(_ session: URLSession,
-                    task: URLSessionTask,
-                    willPerformHTTPRedirection response: HTTPURLResponse,
-                    newRequest request: URLRequest,
-                    completionHandler: @escaping (URLRequest?) -> Void) {
-        var adjusted = request
-        if request.url?.host != "api.github.com" {
-            adjusted.setValue(nil, forHTTPHeaderField: "Authorization")
-        }
-        completionHandler(adjusted)
     }
 
     private func finish(_ result: Result<URL, Error>) {

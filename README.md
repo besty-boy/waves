@@ -55,7 +55,7 @@ xattr -dr com.apple.quarantine /Applications/Wave.app
 
 L’app officielle vérifie les nouvelles Releases publiques de `besty-boy/waves` au lancement et toutes les 6 heures, **uniquement lorsqu’une connexion réseau est active** (`NWPathMonitor` — zéro requête réseau hors ligne). Lorsqu’une version est disponible, Wave télécharge `Wave.zip`, vérifie sa taille, sa somme **SHA-256** et sa signature **`codesign`**, puis remplace le bundle et se relance.
 
-Aucun token GitHub n’est requis (le dépôt est public) ; vous pouvez néanmoins en enregistrer un dans le Trousseau macOS via **Réglages (`⌘,`) → Token GitHub** pour augmenter la limite d’API GitHub.
+Aucun token GitHub ni accès au Trousseau macOS n’est requis (le dépôt est public).
 
 ---
 

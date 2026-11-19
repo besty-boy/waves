@@ -2,6 +2,10 @@
 
 Ce journal résume les changements publiés. Le guide d’utilisation et le détail des mises à jour se trouvent dans le [README](README.md).
 
+## 1.1.1 — 19 novembre 2026
+
+- **Suppression définitive de la fenêtre Trousseau macOS** : retrait du stockage de token GitHub (`com.wave.notes.updates`), devenu inutile depuis le passage en dépôt public. Wave ne sollicite plus jamais le Trousseau macOS lors des mises à jour ou à l’ouverture des Réglages.
+
 ## 1.1.0 — 19 novembre 2026
 
 **Publication open-source (MIT) & architecture 100 % hors ligne**

@@ -4,32 +4,10 @@ import AppKit
 #endif
 
 enum WaveLinks {
-    static let githubToken = URL(string: "https://github.com/settings/tokens?type=beta")
     static let githubReleases = URL(string: "https://github.com/besty-boy/waves/releases")
 }
 
 // MARK: - Shared Settings Subviews
-
-struct WaveTokenStatusLabel: View {
-    let saved: Bool
-    let configured: Bool
-
-    var body: some View {
-        if saved, configured {
-            Label("Token enregistré", systemImage: "checkmark.circle.fill")
-                .font(.caption)
-                .foregroundStyle(WaveTheme.mint)
-        } else if configured {
-            Label("Token configuré", systemImage: "key.fill")
-                .font(.caption)
-                .foregroundStyle(WaveTheme.secondary)
-        } else {
-            Label("Aucun token (optionnel)", systemImage: "key")
-                .font(.caption)
-                .foregroundStyle(WaveTheme.secondary)
-        }
-    }
-}
 
 struct WaveUpdateStatusView: View {
     let banner: UpdateService.Banner?
@@ -76,10 +54,6 @@ struct SettingsPageView: View {
     @EnvironmentObject private var store: WaveStore
     @EnvironmentObject private var updates: UpdateService
     @AppStorage("wave.appearance") private var appearanceRaw = WaveAppearance.system.rawValue
-    @State private var token = ""
-    @State private var revealToken = false
-    @State private var saved = false
-    @State private var tokenError: String?
 
     private var appearanceBinding: Binding<WaveAppearance> {
         Binding(
@@ -121,7 +95,6 @@ struct SettingsPageView: View {
                 appearanceCard
                 #if os(macOS)
                 updatesCard
-                githubAccessCard
                 #else
                 updatesInfoCard
                 #endif
@@ -137,7 +110,6 @@ struct SettingsPageView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
         #endif
-        .onAppear { updates.refreshTokenState() }
     }
 
     // MARK: - Apparence
@@ -187,82 +159,11 @@ struct SettingsPageView: View {
                 WaveUpdateStatusView(banner: updates.banner)
                 Spacer()
             }
-            Text("Wave vérifie les nouvelles versions uniquement lorsque vous êtes connecté (au lancement puis toutes les 6 heures). Hors ligne, aucune requête réseau n’est émise.")
+            Text("Wave vérifie les nouvelles versions publiques uniquement lorsque vous êtes connecté (au lancement puis toutes les 6 heures). Hors ligne, aucune requête réseau n’est émise.")
                 .font(.caption)
                 .foregroundStyle(WaveTheme.secondary)
                 .lineSpacing(4)
                 .fixedSize(horizontal: false, vertical: true)
-        }
-        .waveCard()
-    }
-
-    private var githubAccessCard: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            WaveCardHeader(
-                title: "Token GitHub",
-                subtitle: "Optionnel · augmente la limite API",
-                icon: "key"
-            )
-            Text("Les mises à jour fonctionnent sans token sur le dépôt public \(UpdateService.repositorySlug). Un token conservé dans le Trousseau macOS reste optionnel pour éviter les limites de requêtes GitHub.")
-                .font(.caption)
-                .foregroundStyle(WaveTheme.secondary)
-                .lineSpacing(4)
-                .fixedSize(horizontal: false, vertical: true)
-
-            HStack(spacing: 8) {
-                if revealToken {
-                    TextField("github_pat_…", text: $token)
-                        .textFieldStyle(.plain)
-                        .font(.system(.caption, design: .monospaced))
-                } else {
-                    SecureField("github_pat_…", text: $token)
-                        .textFieldStyle(.plain)
-                        .font(.system(.caption, design: .monospaced))
-                }
-                Button(revealToken ? "Masquer" : "Afficher") { revealToken.toggle() }
-                    .buttonStyle(.plain)
-                    .font(.caption)
-                    .foregroundStyle(WaveTheme.accent)
-            }
-            .padding(12)
-            .background(WaveTheme.elevated, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-
-            HStack(spacing: 10) {
-                Button("Enregistrer") {
-                    saved = GitHubToken.save(token)
-                    tokenError = saved ? nil : "Impossible d’enregistrer le token dans le Trousseau."
-                    if saved {
-                        token = ""
-                        updates.tokenDidChange()
-                    }
-                }
-                .disabled(token.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-
-                if updates.tokenConfigured {
-                    Button("Supprimer", role: .destructive) {
-                        if GitHubToken.remove() {
-                            saved = false
-                            tokenError = nil
-                            updates.tokenDidChange()
-                        } else {
-                            tokenError = "Impossible de supprimer le token du Trousseau."
-                        }
-                    }
-                }
-                Spacer()
-                WaveTokenStatusLabel(saved: saved, configured: updates.tokenConfigured)
-            }
-
-            if let tokenError {
-                Label(tokenError, systemImage: "exclamationmark.circle")
-                    .font(.caption)
-                    .foregroundStyle(WaveTheme.amber)
-            }
-
-            if let tokenURL = WaveLinks.githubToken {
-                Link("Créer un token GitHub…", destination: tokenURL)
-                    .font(.caption)
-            }
         }
         .waveCard()
     }
