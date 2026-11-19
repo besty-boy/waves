@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: Tests & Build macOS
+    runs-on: macos-26
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Run Swift unit tests
+        run: swift test --scratch-path .build/Tests
+
+      - name: Run MCP integration tests
+        run: python3 Scripts/test_mcp.py .build/Tests/debug/WaveMCP
+
+      - name: Run library integration checks
+        run: |
+          swiftc -O Sources/WaveCore/*.swift App/Theme.swift App/WaveStore.swift Scripts/test_library.swift -o .build/library-checks
+          .build/library-checks
+
+      - name: Build Wave app (macOS Debug)
+        run: >-
+          xcodebuild -quiet
+          -project Wave.xcodeproj
+          -scheme Wave
+          -configuration Debug
+          -destination 'platform=macOS,arch=arm64'
+          -derivedDataPath .build/Debug
+          CODE_SIGNING_ALLOWED=NO
+          build

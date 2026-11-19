@@ -2,9 +2,12 @@
 
 Ce journal résume les changements publiés. Le guide d’utilisation et le détail des mises à jour se trouvent dans le [README](README.md).
 
-## 1.1.0 — Publication open-source (MIT) & hors ligne
+## 1.1.0 — 19 novembre 2026
+
+**Publication open-source (MIT) & architecture 100 % hors ligne**
 
 - **Publication open-source sous licence MIT** : les mises à jour macOS vérifient directement les Releases publiques sans token GitHub requis (token conservé en option dans le Trousseau).
+- **Serveur MCP embarqué dans les Releases macOS** : `WaveMCP` est compilé et intégré dans `Wave.app/Contents/Helpers/WaveMCP` pour une configuration en un clic.
 - **Architecture 100 % hors ligne & zéro CPU au repos** : surveillance événementielle `NSFilePresenter` (fin du polling toutes les 5 s), sauvegarde coordonnée non bloquante, détection réseau `NWPathMonitor` (zéro requête hors ligne), aperçu `WKWebView` créé à la demande et respect du mode économie d’énergie.
 - **Mode sombre complet** : palette dynamique clair/sombre dans l’interface, l’éditeur, l’aperçu Markdown et la carte d’idées.
 - **Nouvelles fonctionnalités d’écriture** : Ouverture rapide (`⌘O`), Note du jour (`⇧⌘D`), modèles intégrés, vue Tâches globale interactive, autocomplétion `[[liens internes]]`, panneau Sommaire / Rétroliens / Historique local, Rechercher & remplacer, renommage/suppression de dossiers, collage de captures d’écran et glisser-déposer de pièces jointes.

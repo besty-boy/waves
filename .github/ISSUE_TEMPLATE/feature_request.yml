@@ -1,0 +1,36 @@
+name: Proposition de fonctionnalité
+description: Suggérer une amélioration ou une nouvelle fonctionnalité pour Wave
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Wave vise à rester **léger, 100 % hors ligne et sans dépendance externe**. Expliquez le besoin auquel répond votre proposition.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Besoin ou cas d’usage
+      description: Quel problème ou flux d’écriture cherchez-vous à améliorer ?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Solution envisagée
+      description: Comment imaginez-vous cette fonctionnalité dans Wave ?
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Zone concernée
+      options:
+        - Éditeur Markdown & Aperçu
+        - Bibliothèque, Recherche & Tâches
+        - Carte d’idées
+        - Synchronisation & Exports
+        - Serveur MCP (IA)
+        - Interface / Réglages
+        - Autre
+    validations:
+      required: true

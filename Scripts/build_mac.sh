@@ -13,5 +13,6 @@ cp .build/MCPRelease/release/WaveMCP dist/Wave.app/Contents/Helpers/WaveMCP
 chmod +x dist/Wave.app/Contents/Helpers/WaveMCP
 codesign --force --deep --sign - dist/Wave.app
 codesign --verify --deep --strict dist/Wave.app
-rm -f -- dist/Wave.zip
+rm -f -- dist/Wave.zip dist/Wave.zip.sha256
 ditto -c -k --sequesterRsrc --keepParent dist/Wave.app dist/Wave.zip
+(cd dist && shasum -a 256 Wave.zip > Wave.zip.sha256)

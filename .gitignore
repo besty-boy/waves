@@ -5,3 +5,13 @@ DerivedData/
 *.xcuserstate
 xcuserdata/
 dist/
+*.dSYM
+*.zip
+
+# Local editor and AI assistant state
+.agents/
+.claude/
+.cursor/
+.gemini/
+.idea/
+.vscode/
