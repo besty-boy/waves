@@ -1,0 +1,45 @@
+name: Build and release Wave for macOS
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-26
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build Wave
+        run: >-
+          xcodebuild -quiet
+          -project Wave.xcodeproj
+          -scheme Wave
+          -configuration Release
+          -destination 'platform=macOS,arch=arm64'
+          -derivedDataPath .build/Release
+          CODE_SIGNING_ALLOWED=NO
+          CURRENT_PROJECT_VERSION=${GITHUB_RUN_NUMBER}
+          MARKETING_VERSION=${GITHUB_REF_NAME#v}
+          build
+
+      - name: Package app
+        run: |
+          mkdir -p dist
+          ditto .build/Release/Build/Products/Release/Wave.app dist/Wave.app
+          codesign --force --deep --sign - dist/Wave.app
+          codesign --verify --deep --strict dist/Wave.app
+          ditto -c -k --sequesterRsrc --keepParent dist/Wave.app dist/Wave.zip
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/Wave.zip \
+            --title "Wave $GITHUB_REF_NAME" \
+            --generate-notes

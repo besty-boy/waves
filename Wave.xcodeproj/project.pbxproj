@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* WaveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* WaveApp.swift */; };
+		A10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* ContentView.swift */; };
+		A10000000000000000000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* Theme.swift */; };
+		A10000000000000000000004 /* WaveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* WaveStore.swift */; };
+		A10000000000000000000005 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* SidebarView.swift */; };
+		A10000000000000000000006 /* NotesOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* NotesOverviewView.swift */; };
+		A10000000000000000000007 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* NoteEditorView.swift */; };
+		A10000000000000000000008 /* MindMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* MindMapView.swift */; };
+		A10000000000000000000009 /* MCPSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* MCPSettingsView.swift */; };
+		A1000000000000000000000B /* WaveNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* WaveNote.swift */; };
+		A1000000000000000000000C /* VaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* VaultStore.swift */; };
+		A1000000000000000000000D /* WaveMindMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* WaveMindMap.swift */; };
+		A1000000000000000000000E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* Assets.xcassets */; };
+		A1000000000000000000000F /* WritingTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000F /* WritingTools.swift */; };
+		A10000000000000000000010 /* WriterMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* WriterMarkdown.swift */; };
+		A10000000000000000000011 /* WritingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* WritingTextView.swift */; };
+		A10000000000000000000012 /* WriterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* WriterPreview.swift */; };
+		A10000000000000000000013 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* Fonts */; };
+		A10000000000000000000014 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* AppIcon.icon */; };
+		A10000000000000000000015 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* UpdateService.swift */; };
+		A10000000000000000000016 /* UpdateBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000016 /* UpdateBannerView.swift */; };
+		A10000000000000000000017 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000017 /* SettingsView.swift */; };
+		A10000000000000000000018 /* GitHubToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000018 /* GitHubToken.swift */; };
+		A10000000000000000000019 /* SettingsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000019 /* SettingsPageView.swift */; };
+		A1000000000000000000001A /* TrashViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000001A /* TrashViews.swift */; };
+		C192B30530AF7DB70095373D /* QuickOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192B30430AF7DB70095373D /* QuickOpenView.swift */; };
+		C192B30730AF7DB70095373D /* TasksOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192B30630AF7DB70095373D /* TasksOverviewView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* WaveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveApp.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* WaveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveStore.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* NotesOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesOverviewView.swift; sourceTree = "<group>"; };
+		A20000000000000000000007 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* MindMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindMapView.swift; sourceTree = "<group>"; };
+		A20000000000000000000009 /* MCPSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPSettingsView.swift; sourceTree = "<group>"; };
+		A2000000000000000000000A /* WaveNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveNote.swift; sourceTree = "<group>"; };
+		A2000000000000000000000B /* VaultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultStore.swift; sourceTree = "<group>"; };
+		A2000000000000000000000C /* WaveMindMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveMindMap.swift; sourceTree = "<group>"; };
+		A2000000000000000000000D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2000000000000000000000F /* WritingTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTools.swift; sourceTree = "<group>"; };
+		A20000000000000000000010 /* WriterMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterMarkdown.swift; sourceTree = "<group>"; };
+		A20000000000000000000011 /* WritingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTextView.swift; sourceTree = "<group>"; };
+		A20000000000000000000012 /* WriterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterPreview.swift; sourceTree = "<group>"; };
+		A20000000000000000000013 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		A20000000000000000000014 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		A20000000000000000000015 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
+		A20000000000000000000016 /* UpdateBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBannerView.swift; sourceTree = "<group>"; };
+		A20000000000000000000017 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A20000000000000000000018 /* GitHubToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubToken.swift; sourceTree = "<group>"; };
+		A20000000000000000000019 /* SettingsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageView.swift; sourceTree = "<group>"; };
+		A2000000000000000000001A /* TrashViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashViews.swift; sourceTree = "<group>"; };
+		A30000000000000000000001 /* Wave Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C192B30430AF7DB70095373D /* QuickOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickOpenView.swift; sourceTree = "<group>"; };
+		C192B30630AF7DB70095373D /* TasksOverviewView.swift */ = {isa = PBXFileReference; path = TasksOverviewView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A50000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A50000000000000000000002 /* App */,
+				A50000000000000000000004 /* Sources/WaveCore */,
+				A50000000000000000000005 /* Sources/WaveEditor */,
+				A50000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000000000000000000002 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000014 /* AppIcon.icon */,
+				A2000000000000000000000D /* Assets.xcassets */,
+				A20000000000000000000013 /* Fonts */,
+				A20000000000000000000001 /* WaveApp.swift */,
+				A20000000000000000000002 /* ContentView.swift */,
+				A20000000000000000000003 /* Theme.swift */,
+				A20000000000000000000004 /* WaveStore.swift */,
+				A20000000000000000000005 /* SidebarView.swift */,
+				A20000000000000000000006 /* NotesOverviewView.swift */,
+				A20000000000000000000007 /* NoteEditorView.swift */,
+				A20000000000000000000008 /* MindMapView.swift */,
+				A20000000000000000000009 /* MCPSettingsView.swift */,
+				A20000000000000000000012 /* WriterPreview.swift */,
+				A20000000000000000000015 /* UpdateService.swift */,
+				A20000000000000000000016 /* UpdateBannerView.swift */,
+				A20000000000000000000017 /* SettingsView.swift */,
+				A20000000000000000000018 /* GitHubToken.swift */,
+				A20000000000000000000019 /* SettingsPageView.swift */,
+				A2000000000000000000001A /* TrashViews.swift */,
+				C192B30430AF7DB70095373D /* QuickOpenView.swift */,
+				C192B30630AF7DB70095373D /* TasksOverviewView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000001 /* Wave Dev.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000004 /* Sources/WaveCore */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000A /* WaveNote.swift */,
+				A2000000000000000000000B /* VaultStore.swift */,
+				A2000000000000000000000C /* WaveMindMap.swift */,
+				A20000000000000000000010 /* WriterMarkdown.swift */,
+				A2000000000000000000000F /* WritingTools.swift */,
+			);
+			path = Sources/WaveCore;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000005 /* Sources/WaveEditor */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000011 /* WritingTextView.swift */,
+			);
+			path = Sources/WaveEditor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000000000000000000001 /* Wave */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A90000000000000000000002 /* Build configuration list for PBXNativeTarget "Wave" */;
+			buildPhases = (
+				AA0000000000000000000001 /* Sources */,
+				A40000000000000000000001 /* Frameworks */,
+				AB0000000000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Wave;
+			packageProductDependencies = (
+			);
+			productName = Wave;
+			productReference = A30000000000000000000001 /* Wave Dev.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A60000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A90000000000000000000001 /* Build configuration list for PBXProject "Wave" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A50000000000000000000001;
+			packageReferences = (
+			);
+			productRefGroup = A50000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A60000000000000000000001 /* Wave */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB0000000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000000E /* Assets.xcassets in Resources */,
+				A10000000000000000000013 /* Fonts in Resources */,
+				A10000000000000000000014 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* WaveApp.swift in Sources */,
+				A10000000000000000000002 /* ContentView.swift in Sources */,
+				A10000000000000000000003 /* Theme.swift in Sources */,
+				A10000000000000000000004 /* WaveStore.swift in Sources */,
+				A10000000000000000000005 /* SidebarView.swift in Sources */,
+				A10000000000000000000006 /* NotesOverviewView.swift in Sources */,
+				C192B30530AF7DB70095373D /* QuickOpenView.swift in Sources */,
+				A10000000000000000000007 /* NoteEditorView.swift in Sources */,
+				A10000000000000000000008 /* MindMapView.swift in Sources */,
+				A10000000000000000000009 /* MCPSettingsView.swift in Sources */,
+				A1000000000000000000000B /* WaveNote.swift in Sources */,
+				A1000000000000000000000C /* VaultStore.swift in Sources */,
+				A1000000000000000000000D /* WaveMindMap.swift in Sources */,
+				A10000000000000000000012 /* WriterPreview.swift in Sources */,
+				A10000000000000000000011 /* WritingTextView.swift in Sources */,
+				A10000000000000000000010 /* WriterMarkdown.swift in Sources */,
+				A1000000000000000000000F /* WritingTools.swift in Sources */,
+				A10000000000000000000015 /* UpdateService.swift in Sources */,
+				C192B30730AF7DB70095373D /* TasksOverviewView.swift in Sources */,
+				A10000000000000000000016 /* UpdateBannerView.swift in Sources */,
+				A10000000000000000000017 /* SettingsView.swift in Sources */,
+				A10000000000000000000018 /* GitHubToken.swift in Sources */,
+				A10000000000000000000019 /* SettingsPageView.swift in Sources */,
+				A1000000000000000000001A /* TrashViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A90000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = auto;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A90000000000000000000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = auto;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A90000000000000000000021 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wave.notes.dev;
+				PRODUCT_NAME = "Wave Dev";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A90000000000000000000022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wave.notes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A90000000000000000000001 /* Build configuration list for PBXProject "Wave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000000000000000000011 /* Debug */,
+				A90000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A90000000000000000000002 /* Build configuration list for PBXNativeTarget "Wave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000000000000000000021 /* Debug */,
+				A90000000000000000000022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A80000000000000000000001 /* Project object */;
+}
