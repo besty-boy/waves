@@ -14,11 +14,9 @@
     <a href="https://github.com/besty-boy/waves/releases/latest">
       <img src="https://img.shields.io/github/v/release/besty-boy/waves?display_name=tag&style=flat-square&color=0088FF&label=Release" alt="Latest Release" />
     </a>
-    <a href="https://github.com/besty-boy/waves/actions/workflows/ci.yml">
-      <img src="https://img.shields.io/github/actions/workflow/status/besty-boy/waves/ci.yml?branch=main&style=flat-square&label=CI" alt="CI Status" />
-    </a>
     <img src="https://img.shields.io/badge/Platforms-macOS%2013%2B%20%7C%20iOS%2017%2B%20%7C%20iPadOS%2017%2B-1D1D1F?style=flat-square" alt="Platforms" />
     <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?style=flat-square" alt="Swift" />
+    <img src="https://img.shields.io/badge/MCP-Ready-7547CC?style=flat-square" alt="MCP Ready" />
     <a href="LICENSE">
       <img src="https://img.shields.io/github/license/besty-boy/waves?style=flat-square&color=1F8049" alt="MIT License" />
     </a>
@@ -147,11 +145,17 @@ Produit `dist/Wave.app` (avec `WaveMCP` intégré) et `dist/Wave.zip`.
 
 ### Publier une nouvelle Release macOS
 
-Créer et pousser un tag sémantique déclenche automatiquement la CI et publie `Wave.zip` + `Wave.zip.sha256` dans une Release GitHub publique :
+Créer et pousser un tag sémantique déclenche automatiquement GitHub Actions et publie `Wave.zip` + `Wave.zip.sha256` dans une Release GitHub publique :
 
 ```sh
 git tag v1.1.0
 git push origin v1.1.0
+```
+
+Vous pouvez aussi tester, compiler et publier une Release directement depuis votre Mac via `gh` :
+
+```sh
+Scripts/release_mac.sh v1.1.0
 ```
 
 ---
